@@ -26,7 +26,7 @@ i requisiti che lo script in pyhon richiede per poter essere avviato sono:
 Le istanze di test sono state tutte le 160 istanze che si trovano dentro la direcotry Falkenauer_CSP, per aggiungere un istanza bisogna inserirle all'interno di una delle direcotry all'interno di Falkenauer_CPS e il file deve essere conforme allo schema degli altri file per tanto deve essere:
 1. la prima riga deve contenere solo il numero di oggetti (m)
 2. la seconda riga deve contenere solo la capacità del Foglio (c)
-3. per ogni oggetto ci deve essere una riga che contiene prima il peso (wj) e poi la richiesta (dj),dj deve distare un tab da wj!!!;  
+3. per ogni oggetto ci deve essere una riga che contiene prima il peso (wj) e poi la richiesta (dj),dj deve distare un tab da wj!!! 
 ESEMPIO:<br />
 il numero di tagli é 3.  
 il vettore dei tagli é: 10,20,30. 
