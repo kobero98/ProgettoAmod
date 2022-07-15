@@ -29,5 +29,24 @@ def main():
         file.flush()
         indice=indice+1
     file.close()
-        
+def main2():
+    file=open("result1.csv","w")
+    dir1='./Falkenauer_CSP/Falkenauer_U'
+    List=os.listdir(dir1)
+    file.write("Nome,PaperRollSize,N_Tagli,numero Colonne,Errore Assoluto RoundUp,Errore Relativo RoundUp,Errore Assoluto branch,Errore Relativo branch,Tempo generazione Colonne,Tempo Soluzione migliorata,Tempo Terminazione Algoritmo,soluzione rilassamento,soluzione Ottima,soluzioneTrovata,soluzione ottimo dal RoundUp\n")
+    indice=0
+    for path in List:
+        print(str(indice)+")"+path)
+        instance=lettoreCuttingPlain.Lettore(dir1+"/"+path)
+        z=cuttingStock(instance)
+        z.Algoritmo(path)
+        y=z.statistic()
+        for i in range(0,len(y)):
+            file.write(str(y[i]))
+            file.write(",")
+        file.write("\n")
+        file.flush()
+        indice=indice+1
+    file.close()
+main2()        
 main()

@@ -34,6 +34,7 @@ class lettoreCuttingPlain:
                     d=d+s
             L.append(objectToStock(int(w),int(d)))                
         return cuttingStockInstance(L, size)
+    
 class cut:
     def __init__(self,Coefficienti,pattern,condizione,limite):
         self.Coefficienti=Coefficienti
@@ -50,13 +51,13 @@ class cut:
         return self.Limite
         
 class ChronoMeter:
-    start = 0
+    inizio = 0
     end = 0
     press= False
     def start(self):
         if not self.press:
             self.press=True
-            self.start = self.current_time()
+            self.inizio = self.current_time()
 
     def stop(self):
         if self.press:
@@ -64,8 +65,8 @@ class ChronoMeter:
             self.press=False
 
     def getDurate(self):
-        if self.end>=self.start:
-            return self.end - self.start
+        if self.end>=self.inizio:
+            return self.end - self.inizio
         return 0
     def current_time(self):
         return round(time.time() * 1000)   
@@ -78,7 +79,7 @@ class objectToStock:
         return self.demand
     def getWeight(self):
        return self.weight
-    
+
 class cuttingStockInstance:
     def __init__(self,listObjectToStock,size):
         self.size=size
@@ -101,22 +102,4 @@ class cuttingStockInstance:
     def getb(self):
         b=[]
         return b
- #   def getA(self):
- #       A1=[]
- #       for j in range(0,len(self.A[0])):
- #           A2=[]
- #           A1.append(A2)
- #       for i in range(0,len(self.A)):
- #           for j in range(0,len(self.A[i])):
- #               A1[j].append(self.A[i][j])
- #       for i in range(0,len(A1[0])):
- #           A1.append([0]*len(A1[0]))
- #           A1[len(A1)-1][i]=1
- #       return A1
- #   def getb(self):
- #       b=[]
- #       for i in range(0,len(self.listObjectToStock)):
- #           b.append(self.listObjectToStock[i].getDemand())
- #       for i in range(0,len(self.listObjectToStock)):
- #           b.append(0)
- #       return b
+ 

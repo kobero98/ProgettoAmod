@@ -154,6 +154,8 @@ class cuttingStock:
             x=-s
             return math.ceil(x)-x 
         
+        
+# funzione implementata ma ancora non implementata come miglioria del codice
     def gomoryCut1(self,model):
         indexB=[]    #vettore degli indici in base
         indexN=[]    #vettore degli indici fuori base
@@ -210,6 +212,7 @@ class cuttingStock:
                 break
         return model
 
+
     def controllo(self,Q):
         for i in range(0,len(Q)):
             if Q[i]>=0:
@@ -232,7 +235,6 @@ class cuttingStock:
             x=model.getVars()
             for i in range(0,len(x)):
                 if x[i].X!=math.trunc(x[i].X):
-                
                     Q.append(0)
                     vbranch.append(i)
                     valore.append(x[i].X)
@@ -252,6 +254,7 @@ class cuttingStock:
                     padre.append(t)
                     f=M[t].copy()
                     x=f.getVars()
+                    x[h].setAttr("VType","I")
                     fo=gp.LinExpr()
                     fo.add(x[h],1)
                     f.addConstr(x[h]<=math.trunc(val))
@@ -259,12 +262,12 @@ class cuttingStock:
                     padre.append(-t)
                     f=M[t].copy()
                     x=f.getVars()
+                    x[h].setAttr("VType","I")
                     fo=gp.LinExpr()
                     fo.add(x[h],1)
                     f.addConstr(x[h]>=math.ceil(val))
                 f.optimize()
                 if f.getAttr("Status")<3:
-                    #m=m+1
                     LB.append(f.objVal)
                     if self.intero(f.getVars()) and f.objval<self.zopt:
                         self.zopt=f.objVal
@@ -282,7 +285,6 @@ class cuttingStock:
                             if x[i].X!=math.trunc(x[i].X):
                                 vbranch.append(i)
                                 valore.append(x[i].X)
-                                #Q.append(m)
                                 Q.append(len(vbranch)-1)
                                 break
                         M.append(f)
@@ -309,7 +311,6 @@ class cuttingStock:
         self.ErroreRelativoBranch=math.fabs((self.ZPLIColonneTrovate-self.zopt)/self.ZPLIColonneTrovate)
     
     def statistic(self):
-        #nome,numero di oggetti,numero di Taglie
         print("path",self.namePath)
         print("dimensione paperRoll",self.size)
         print("numero Taglie ",len(self.D))
@@ -330,14 +331,4 @@ class cuttingStock:
                 self.TempoGenerazioneColonne,self.TempoSoluzioneMigliore,self.TempoTerminazione,
                 self.zRilassamentoLineare,self.ZPLIColonneTrovate,self.zopt,self.RoundupZ
                 )
-"""
-def main():
-    dir1='./Falkenauer_CSP/Falkenauer_T'
-    indice=0
-    instance=lettoreCuttingPlain.Lettore(dir1+"/"+"Falkenauer_t60_14.txt")
-    z=cuttingStock(instance)
-    z.Algoritmo("Falkenauer_t60_14.txt")
-    y=z.statistic()
-    print(y)
-main()
-"""
+
